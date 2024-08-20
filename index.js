@@ -41,6 +41,17 @@ async function run() {
       }
     });
 
+    // get all orders
+    app.get("/api/v1/orders", async (req, res) => {
+      try {
+        const orders = await ordersCollection.find().toArray();
+        res.json(orders);
+      } catch (error) {
+        console.error("Error fetching medicines:", error);
+        res.status(500).json({ error: "Internal Server Error" });
+      }
+    });
+
     // order find
 
     app.get("/api/v1/orders", async (req, res) => {
