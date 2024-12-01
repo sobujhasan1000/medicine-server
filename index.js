@@ -31,7 +31,7 @@ async function run() {
     const ordersCollection = db.collection("orders");
 
     // get all medicine
-    app.get("/api/v1/medicines", async (req, res) => {
+    app.get("/medicines", async (req, res) => {
       try {
         const medicines = await medicinecollection.find().toArray();
         res.json(medicines);
@@ -42,7 +42,7 @@ async function run() {
     });
 
     // get all orders
-    app.get("/api/v1/orders", async (req, res) => {
+    app.get("/orders", async (req, res) => {
       try {
         const orders = await ordersCollection.find().toArray();
         res.json(orders);
@@ -54,7 +54,7 @@ async function run() {
 
     // order find
 
-    app.get("/api/v1/orders", async (req, res) => {
+    app.get("/orders", async (req, res) => {
       const { email } = req.query;
 
       if (!email) {
@@ -68,7 +68,7 @@ async function run() {
     });
 
     // User Registration
-    app.post("/api/v1/register", async (req, res) => {
+    app.post("/register", async (req, res) => {
       const { username, email, password } = req.body;
 
       // Check if email already exists
@@ -98,7 +98,7 @@ async function run() {
     });
 
     // User Login
-    app.post("/api/v1/login", async (req, res) => {
+    app.post("/login", async (req, res) => {
       const { email, password } = req.body;
 
       // Find user by email
@@ -130,7 +130,7 @@ async function run() {
     });
 
     // Place Order
-    app.post("/api/v1/orders", async (req, res) => {
+    app.post("/orders", async (req, res) => {
       const { useremail, cart, totalPrice, shippingAddress } = req.body;
 
       // Check if user exists
